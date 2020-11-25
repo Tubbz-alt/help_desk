@@ -34,7 +34,9 @@ defmodule HelpDesk.MixProject do
       {:saxy, "~> 1.1"},
       {:hackney, "~> 1.16"},
       {:jason, "~> 1.2", override: true},
-      {:credo, "~> 1.3", only: [:dev, :test]}
+      {:credo, "~> 1.3", only: [:dev, :test]},
+      {:zen_ex, "~> 0.4"},
+      {:poison, "~> 4.0", override: true}
     ]
   end
 end
