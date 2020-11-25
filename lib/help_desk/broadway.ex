@@ -67,13 +67,23 @@ defmodule HelpDesk.Broadway do
   end
 
   defp notify_handler({:support_question, question}) do
-    Logger.debug("Handling User Created message")
+    Logger.debug("Handling Question Created message")
     Tickets.create(question)
   end
 
   defp notify_handler({:organization_created, %{organization: organization}}) do
-    Logger.debug("Handling User Created message")
+    Logger.debug("Handling Organization Created message")
     Organizations.create(organization)
+  end
+
+  defp notify_handler({:organization_joined, %{organization: organization, user: user}}) do
+    Logger.debug("Handling Organization Joined message")
+    Organizations.join(organization, user)
+  end
+
+  defp notify_handler({:organization_quit, %{user: user}}) do
+    Logger.debug("Handling Organization Quit message")
+    Organizations.leave(user)
   end
 
   defp notify_handler(_) do
