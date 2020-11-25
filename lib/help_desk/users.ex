@@ -1,8 +1,8 @@
 defmodule HelpDesk.Users do
+  alias Bottle.Account.Events.V1.UserCreated
   alias ZenEx.Entity.{Organization, User}
-  alias Bottle.Account.V1.User, as: BottleUser
 
-  def sync(%BottleUser{} = user) do
+  def sync(%UserCreated{user: user}) do
     user
     |> zendesk_attributes()
     |> ZenEx.Model.User.create()
